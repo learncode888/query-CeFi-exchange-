@@ -1,0 +1,9 @@
+#fetch data from exchange
+
+import ccxt
+ftx = ccxt.ftx()
+start = ftx.parse8601('2020-07-23 00:00:00')
+end = ftx.parse8601('2020-09-06 00:00:00')  
+ohlcv = ftx.fetch_ohlcv("AMPL/USD", '1h', start, None, { 'end': int(end/1000)})
+for entry in ohlcv:
+    print('Example', ftx.iso8601(entry[0]), entry[1:6])
